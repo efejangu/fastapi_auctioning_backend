@@ -4,35 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/bidding application.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/auth/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/auth/auth_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/auth/pwd_hash.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/item/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/item/item_repository.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/services/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/services/auth_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/services/item_service.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/database.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routers/auth_router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routers/bidding_router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routers/items_router.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/run.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test authentication.py" afterDir="false" />
+    <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="added authentication functionality">
+      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_stack.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/services/bidding_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/auth/auth_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/auth/auth_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/item/item_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/item/item_repository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/services/item_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/services/item_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routers/auth_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/auth_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routers/bidding_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/bidding_router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,36 +41,41 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2l1nQsQLmmHNx0gc5sCcXa2FlHk" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for app.tests.test_database.test_users.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for database_test.test_users.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for database_test.test_users_endpoint.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_database.test_users.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_database.test_users_endpoint.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.auth_repository.executor&quot;: &quot;Run&quot;,
-    &quot;Python.auth_router.executor&quot;: &quot;Run&quot;,
-    &quot;Python.database.executor&quot;: &quot;Run&quot;,
-    &quot;Python.models.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pwd_hash.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sessiontokens.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/popcornjack/PycharmProjects/bidding application/app/app.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for app.tests.test_database.test_users.executor": "Run",
+    "Python tests.Python tests for database_test.test_users.executor": "Run",
+    "Python tests.Python tests for database_test.test_users_endpoint.executor": "Run",
+    "Python tests.Python tests for test_database.test_users.executor": "Run",
+    "Python tests.Python tests for test_database.test_users_endpoint.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.auth_repository.executor": "Run",
+    "Python.auth_router.executor": "Run",
+    "Python.bidding_stack.executor": "Run",
+    "Python.database.executor": "Run",
+    "Python.models.executor": "Run",
+    "Python.pwd_hash.executor": "Run",
+    "Python.run.executor": "Run",
+    "Python.sessiontokens.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "com.codeium.enabled": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/popcornjack/PycharmProjects/bidding application/app/app.py",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/core/repo" />
+      <recent name="$PROJECT_DIR$/app/core" />
       <recent name="$PROJECT_DIR$/app/core/repo/auth" />
       <recent name="$PROJECT_DIR$/app" />
     </key>
@@ -159,6 +149,30 @@
       <option name="presentableId" value="Default" />
       <updated>1724356436729</updated>
     </task>
+    <task id="LOCAL-00001" summary="added authentication functionality">
+      <option name="closed" value="true" />
+      <created>1724928709371</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724928709371</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added authentication functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="added authentication functionality" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/core/repo/auth/auth_repository.py</url>
+          <line>24</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

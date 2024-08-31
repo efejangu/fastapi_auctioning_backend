@@ -5,15 +5,14 @@ from fastapi.security import OAuth2PasswordBearer
 from typing import Annotated
 from fastapi import Depends
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 class SessionTokens:
     def __init__(self):
         self.SECRET_KEY = "mysecretkey"
         self.ALGORITHM = "HS256"
         self.ACCESS_TOKEN_EXPIRE_MINUTES = 30
+       #self.oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
-        
     async def create_access_token(self, subject: dict, expires_delta: int = None) -> dict:
         if expires_delta is not None:
             expires_delta = datetime.utcnow() + expires_delta
@@ -27,7 +26,7 @@ class SessionTokens:
             "token_type": "bearer"
         }
 
-    async def get_current_user_id(self, token: Annotated[str, Depends(oauth2_scheme)]):
+    async def get_current_user_id(self, token: Annotated[str, Depends(OAuth2PasswordBearer(tokenUrl="auth/login"))]):
         try:
             payload = jwt.decode(token, self.SECRET_KEY, algorithms=self.ALGORITHM)
             user_id: str = payload.get("sub")

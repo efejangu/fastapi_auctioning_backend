@@ -13,3 +13,7 @@ class Items(BaseModel):
     item_description: str
     price: int
     available: bool
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str

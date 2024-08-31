@@ -15,11 +15,12 @@ class AuthRepository:
 
   async def authentication_handler(self, db: Session, form_data: Depends(OAuth2PasswordRequestForm)):
        user = await self.authenticate_user(form_data.username, form_data.password, db)
-       sesh = await SessionTokens().create_access_token({"id": user.id})
        if not user:
            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                                detail="Incorrect username or password")
-       print(sesh)
+       sesh = await SessionTokens().create_access_token({"id": user.id})
+       return sesh
+
 
   async def regisration_handler(self, form_data: CreateUser, db: Session):
        does_usr_exist = await self.get_user(form_data.email, db)

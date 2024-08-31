@@ -20,7 +20,7 @@ class AuthRouter:
     def __init__(self):
         self.auth_service = AuthService()
 
-    @auth_router.post("/login")
+    @auth_router.post("/login", response_model=schema.Token)
     async def login(self, db: dependancy ,form_data: OAuth2PasswordRequestForm = Depends()):
         return await self.auth_service.auth_handler(form_data, db)
 

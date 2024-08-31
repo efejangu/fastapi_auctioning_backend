@@ -13,8 +13,8 @@ class User(Base):
     username = Column(String)
     password = Column(String)
 
-    user_biding_history = relationship("BidingHistory", backref="users")
-    item = relationship("Items", backref="users")
+    # user_biding_history = relationship("BidingHistory", backref="users")
+    # item = relationship("Items", backref="users")
 
 class BidingHistory(Base):
     __tablename__ = "user_biding_history"
@@ -30,10 +30,10 @@ class BidingHistory(Base):
 class Items(Base):
     __tablename__ = "item"
     ItemID = Column(Integer, primary_key=True, index=True)
-    owner_id = Column(UUID(as_uuid=True), ForeignKey("users.id"))
+    owner_id = Column(UUID(), ForeignKey("users.id"))
     item_name = Column(String)
     item_description = Column(String)
-    price = Column(Integer)
+    price = Column(Integer())
     available = Column(Boolean, nullable=False)
 
     owner = relationship("User", backref="item")
