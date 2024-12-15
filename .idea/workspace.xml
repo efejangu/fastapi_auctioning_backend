@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="added authentication functionality">
-      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_stack.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/services/bidding_service.py" afterDir="false" />
+    <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="added authentication functionality&#10;added functionality for user to interact with Items">
+      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_logic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_watch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/conn_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/repo/auth/auth_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/auth/auth_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/repo/item/item_repository.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/item/item_repository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/services/item_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/services/item_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/auth_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/auth_router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/bidding_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/bidding_router.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schema.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/schema.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +25,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
@@ -59,6 +57,7 @@
     "Python.auth_repository.executor": "Run",
     "Python.auth_router.executor": "Run",
     "Python.bidding_stack.executor": "Run",
+    "Python.bidding_watch.executor": "Run",
     "Python.database.executor": "Run",
     "Python.models.executor": "Run",
     "Python.pwd_hash.executor": "Run",
@@ -67,8 +66,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.codeium.enabled": "true",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/popcornjack/PycharmProjects/bidding application/app/app.py",
+    "git-widget-placeholder": "features",
+    "last_opened_file_path": "/home/popcornjack/PycharmProjects/bidding application",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -130,6 +129,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.run" />
+        <item itemvalue="Python.run" />
+        <item itemvalue="Python.run" />
       </list>
     </recent_temporary>
   </component>
@@ -157,12 +158,49 @@
       <option name="project" value="LOCAL" />
       <updated>1724928709371</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added authentication functionality&#10;added functionality for user to interact with Items">
+      <option name="closed" value="true" />
+      <created>1725124598783</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1725124598783</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="features" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added authentication functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="added authentication functionality" />
+    <MESSAGE value="added authentication functionality&#10;added functionality for user to interact with Items" />
+    <option name="LAST_COMMIT_MESSAGE" value="added authentication functionality&#10;added functionality for user to interact with Items" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

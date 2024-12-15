@@ -1,6 +1,6 @@
 
 class Node:
-    def __init__(self, data:float):
+    def __init__(self, data:dict):
         self.data = data
         self.next = None
 
@@ -9,17 +9,27 @@ class Stack:
         self.head = None
         self.size = 0
 
-    def peek (self):
+    def peek (self) -> None | dict:
+        """Returns the top element in the stack without removing it.
+        If the stack is empty, it returns None.
+        """
+        if self.head is None:
+            return None
         return self.head.data
+        
 
-    def push (self, data):
+  
+    def push(self, data: dict):
+        if not isinstance(data, dict) or 'bid' not in data or 'bidder' not in data:
+            raise ValueError("Data must be a dictionary with 'bid' and 'bidder' keys")
         new_node = Node(data)
         if self.size == 0:
             self.head = new_node
-            self.size += 1
-        new_node.next = self.head
-        self.head = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
         self.size += 1
+        return self.size
 
     def pop (self):
         if self.size == 0:
@@ -30,7 +40,11 @@ class Stack:
         return data
 
     def collapse(self):
-        while self.size > 0:
-            self.pop()
-
+        # Remove all nodes from the stack   
+        node = self.head
+        while node is not None:
+            next_node = node.next
+            del node
+            node = next_node
+        
 

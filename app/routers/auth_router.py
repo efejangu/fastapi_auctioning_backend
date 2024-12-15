@@ -22,8 +22,9 @@ class AuthRouter:
 
     @auth_router.post("/login", response_model=schema.Token)
     async def login(self, db: dependancy ,form_data: OAuth2PasswordRequestForm = Depends()):
-        return await self.auth_service.auth_handler(form_data, db)
+        return await self.auth_service.auth_handler(db, form_data)
 
     @auth_router.post("/signup")
     async def signup(self, form_data: schema.CreateUser, db: dependancy):
-        return await self.auth_service.registration_handler(form_data,db)
+        response = await self.auth_service.registration_handler(form_data, db)
+        return response

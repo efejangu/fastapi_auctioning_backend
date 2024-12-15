@@ -5,15 +5,16 @@ from app.database import session, get_db
 from app.models import User
 from fastapi import status
 from app.core.repo.auth.pwd_hash import PasswordHash
-from app.core.repo.auth.session_tokens import SessionTokens,timedelta
+from app.core.repo.auth.session_tokens import SessionTokens
 from app.schema import CreateUser
 from fastapi import HTTPException
+from fastapi.responses import JSONResponse, Response
 from typing import Union
 
 
 class AuthRepository:
 
-  async def authentication_handler(self, db: Session, form_data: Depends(OAuth2PasswordRequestForm)):
+  async def authentication_handler(self, db: Session, form_data: OAuth2PasswordRequestForm):
        user = await self.authenticate_user(form_data.username, form_data.password, db)
        if not user:
            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
@@ -22,7 +23,7 @@ class AuthRepository:
        return sesh
 
 
-  async def regisration_handler(self, form_data: CreateUser, db: Session):
+  async def registration_handler(self, form_data: CreateUser, db: Session):
        does_usr_exist = await self.get_user(form_data.email, db)
        if does_usr_exist:
            raise HTTPException(status_code=status.HTTP_409_CONFLICT,
@@ -44,7 +45,9 @@ class AuthRepository:
        db.commit()
        db.refresh(new_usr)
        #return status code for user being created successfully
-       return {"status": 201, "message": "User created successfully"}
+       return JSONResponse(status_code=201,   content={"message": "User created successfully"})
+      
+   
 
   async def get_user(self, email: Union[str, None], db: Session):
    identifier_length = isinstance(email, str) and (len(email) > 0)

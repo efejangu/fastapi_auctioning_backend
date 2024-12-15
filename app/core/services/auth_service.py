@@ -13,10 +13,10 @@ class AuthService:
     # create four empty methods named auth_handler, registration_handler, get_access_token, logout
 
     def auth_handler(self, db: Session ,form_data: OAuth2PasswordRequestForm = Depends()):
-        return self.auth_repo.authentication_handler(form_data, db)
+        return self.auth_repo.authentication_handler(db, form_data)
 
     def registration_handler(self, form_data: schema.CreateUser, db: Session):
-        return self.auth_repo.regisration_handler(form_data, db)
+        return self.auth_repo.registration_handler(form_data, db)
 
     def get_access_token(self):
         pass
