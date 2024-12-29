@@ -3,24 +3,20 @@
     <form @submit.prevent="handleSubmit" class="login-form">
       <h1 class="title">BidFlow</h1>
       <div class="form-group">
-        <label for="username">Username</label>
         <input
-          type="text"
-          id="username"
-          v-model="username"
+          type="email"
+          v-model="email"
+          placeholder="Email"
           required
-          placeholder="Enter your username"
         />
       </div>
 
       <div class="form-group">
-        <label for="password">Password</label>
         <input
           type="password"
-          id="password"
           v-model="password"
+          placeholder="Password"
           required
-          placeholder="Enter your password"
         />
       </div>
 
@@ -41,9 +37,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { authService } from '@/services/auth'
 
 const router = useRouter()
-const username = ref('')
+const email = ref('')
 const password = ref('')
 const error = ref('')
 const loading = ref(false)
@@ -53,118 +50,21 @@ const handleSubmit = async () => {
   error.value = ''
   
   try {
-    // TODO: Implement authentication logic
-    console.log('Login attempt:', { username: username.value, password: password.value })
-    router.push('/dashboard')
+    const result = await authService.login(email.value, password.value)
+    
+    if (result.success) {
+      router.push('/dashboard')
+    } else {
+      error.value = result.error
+    }
   } catch (err) {
-    error.value = err.message || 'Failed to login'
+    error.value = 'An unexpected error occurred'
   } finally {
     loading.value = false
   }
 }
 </script>
 
-<style scoped>
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem;
-}
-
-.login-form {
-  background: var(--card-bg);
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  max-width: 400px;
-  border: 1px solid var(--border-color);
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 2rem;
-  font-family: 'Dancing Script', cursive;
-  font-size: 2.5rem;
-  background: linear-gradient(45deg, #ffffff, #64ffda);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--text-light);
-  font-weight: 500;
-}
-
-input {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: var(--bg-darker);
-  color: var(--text-light);
-  border: 1px solid var(--border-color);
-  transition: all 0.3s ease;
-}
-
-input:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 2px rgba(66, 185, 131, 0.1);
-}
-
-.submit-btn {
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-top: 1.5rem;
-  background: linear-gradient(45deg, var(--primary-color), #64ffda);
-  color: var(--bg-darker);
-  font-weight: bold;
-  transition: transform 0.2s;
-}
-
-.submit-btn:hover {
-  transform: translateY(-1px);
-}
-
-.submit-btn:disabled {
-  background: var(--text-gray);
-  transform: none;
-  color: var(--bg-darker);
-  opacity: 0.7;
-}
-
-.error {
-  color: #ff6b6b;
-  margin-top: 1rem;
-  text-align: center;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.register-link {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: var(--text-light);
-}
-
-.register-link a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.register-link a:hover {
-  text-decoration: underline;
-}
+<style>
+@import './css/LoginForm.css';
 </style>

@@ -27,6 +27,30 @@ class AuthService {
     }
   }
 
+  async register(username, email, password) {
+    try {
+      const response = await axios.post(`${API_URL}/auth/register`, {
+        username,
+        email,
+        password
+      })
+      
+      if (response.data.id) {
+        return { success: true }
+      }
+      
+      return {
+        success: false,
+        error: 'Registration failed'
+      }
+    } catch (error) {
+      return {
+        success: false,
+        error: error.response?.data?.message || 'Failed to register'
+      }
+    }
+  }
+
   logout() {
     localStorage.removeItem('user')
   }
