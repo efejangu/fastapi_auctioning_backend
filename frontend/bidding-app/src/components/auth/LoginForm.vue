@@ -53,7 +53,7 @@ const handleSubmit = async () => {
     const result = await authService.login(email.value, password.value)
     
     if (result.success) {
-      router.push('/dashboard')
+      router.push({ path: '/dashboard', replace: true })
     } else {
       error.value = result.error
     }

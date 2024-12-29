@@ -60,6 +60,11 @@ class AuthService {
     if (!userStr) return null
     return JSON.parse(userStr)
   }
+
+  isAuthenticated() {
+    const user = this.getCurrentUser()
+    return !!user && !!user.token
+  }
 }
 
 export const authService = new AuthService()

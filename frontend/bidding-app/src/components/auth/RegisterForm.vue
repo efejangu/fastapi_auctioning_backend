@@ -82,7 +82,7 @@ const handleSubmit = async () => {
     )
     
     if (result.success) {
-      router.push('/login')
+      router.push({ path: '/login', replace: true })
     } else {
       error.value = result.error
     }
