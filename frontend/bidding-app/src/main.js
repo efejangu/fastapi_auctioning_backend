@@ -2,33 +2,34 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-/* import the fontawesome core */
+/* Import FontAwesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
-
-/* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-/* import specific icons */
 import { 
-    faHouse,
-    faStore,
-    faBookmark,
-    faUser,
-    faArrowRightFromBracket
+    faTag, 
+    faDollarSign, 
+    faChartLine, 
+    faClock, 
+    faPlusCircle, 
+    faChartBar,
+    faStore 
 } from '@fortawesome/free-solid-svg-icons'
 
-/* add icons to the library */
+/* Add icons to the library */
 library.add(
-    faHouse,
-    faStore,
-    faBookmark,
-    faUser,
-    faArrowRightFromBracket
+    faTag, 
+    faDollarSign, 
+    faChartLine, 
+    faClock, 
+    faPlusCircle, 
+    faChartBar,
+    faStore
 )
 
 const app = createApp(App)
 
+/* Register FontAwesome component globally */
 app.component('font-awesome-icon', FontAwesomeIcon)
-app.use(router)
 
+app.use(router)
 app.mount('#app')

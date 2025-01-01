@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { authService } from '@/services/auth'
+import Dashboard from '@/components/bidding/Dashboard.vue'
+import Auctions from '@/components/bidding/Auctions.vue'
+import CreateBid from '@/components/bidding/CreateBid.vue'
+import LoginForm from '../components/auth/LoginForm.vue'
+import RegisterForm from '../components/auth/RegisterForm.vue'
 
 const routes = [
   {
@@ -9,25 +14,31 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../components/auth/LoginForm.vue'),
+    component: LoginForm,
     meta: { requiresGuest: true }
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import('../components/auth/RegisterForm.vue'),
+    component: RegisterForm,
     meta: { requiresGuest: true }
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import('../components/bidding/Dashboard.vue'),
+    component: Dashboard,
     meta: { requiresAuth: true }
   },
   {
     path: '/auctions',
     name: 'Auctions',
-    component: () => import('../components/bidding/Auctions.vue'),
+    component: Auctions,
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/create-bid',
+    name: 'CreateBid',
+    component: CreateBid,
     meta: { requiresAuth: true }
   }
 ]
