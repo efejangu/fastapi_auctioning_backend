@@ -54,13 +54,20 @@ class BidTimer:
         self.timer_task = None
 
     async def start(self):
-        if self.timer_task:
-            self.stop()
-        self.timer_task = asyncio.create_task(self._run_timer())
+        try:
+            if self.timer_task and not self.timer_task.done():
+                self.stop()
+            self.timer_task = asyncio.create_task(self._run_timer())
+        except Exception as e:
+            self.timer_task = None
+            raise Exception(f"Failed to start timer: {str(e)}")
 
     def stop(self):
-        if self.timer_task:
-            self.timer_task.cancel()
+        try:
+            if self.timer_task and not self.timer_task.done():
+                self.timer_task.cancel()
+            self.timer_task = None
+        except Exception as e:
             self.timer_task = None
 
     async def _run_timer(self):
@@ -69,3 +76,5 @@ class BidTimer:
             await self.callback()
         except asyncio.CancelledError:
             pass
+        finally:
+            self.timer_task = None

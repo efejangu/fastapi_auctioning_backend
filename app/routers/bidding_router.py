@@ -1,11 +1,10 @@
-from fastapi_utils import cbv
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, WebSocket, HTTPException, status
 from app.database import get_db
 from typing import Annotated
 from sqlalchemy.orm import Session
-from fastapi_utils.cbv import cbv
-
-dependancy = Annotated[Session, Depends(get_db)]
+from app.core.services.bidding_service import BiddingService
+from app.core.repo.auth.session_tokens import SessionTokens
+from app.core.repo.bid.bidding_main import BiddingMain
 
 bidding_router = APIRouter(
     prefix="/bidding",
@@ -13,15 +12,73 @@ bidding_router = APIRouter(
     responses={404: {"description": "Not found"}}
 )
 
-@cbv(bidding_router)
-class BiddingRouter:
-    # create 4 methods within this class their names are create_bid, enter_bid, place_bid and exit_room. Make all aof these methods blank with no meaning no parameters or arguments and put a pass statement in all of them
-    def create_bid(self):
-        pass
-    def enter_bid(self):
-        pass
-    def place_bid(self):
-        pass
-    def exit_room(self):
-        pass
+@bidding_router.websocket("/ws/create_group")
+async def create_group(
+    websocket: WebSocket,
+    group_name: str,
+    target_price: float,
+    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
+    db: Session = Depends(get_db)
+):
+    if user_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+        )
+        return
+    
+    bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
+    await bidding_service.create_group(websocket, group_name, target_price)
 
+@bidding_router.websocket("/ws/connect")
+async def connect(
+    websocket: WebSocket,
+    group_name: str,
+    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
+    db: Session = Depends(get_db)
+):
+    if user_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+        )
+        return
+    
+    bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
+    await bidding_service.connect(websocket, group_name)
+
+@bidding_router.websocket("/ws/disconnect")
+async def disconnect(
+    websocket: WebSocket,
+    group_name: str,
+    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
+    db: Session = Depends(get_db)
+):
+    if user_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+        )
+        return
+    
+    bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
+    await bidding_service.disconnect(websocket, group_name)
+
+@bidding_router.websocket("/ws/place_bid")
+async def place_bid(
+    websocket: WebSocket,
+    bid: float,
+    group_name: str,
+    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
+    db: Session = Depends(get_db)
+):
+    if user_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+        )
+        return
+    
+    bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
+    await bidding_service.place_bid(websocket, bid, group_name, user_id)
+    await bidding_service.bidding_status(group_name)

@@ -35,7 +35,18 @@
   margin-bottom: 1.5rem;
 }
 
-input {
+input[type="email"], input[type="text"] {
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+input[type="password"] {
   width: 100%;
   padding: 1.25rem;
   border-radius: 8px;

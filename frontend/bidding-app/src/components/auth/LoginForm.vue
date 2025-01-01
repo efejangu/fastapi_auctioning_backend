@@ -4,9 +4,9 @@
       <h1 class="title">BidFlow</h1>
       <div class="form-group">
         <input
-          type="email"
-          v-model="email"
-          placeholder="Email"
+          type="text"
+          v-model="username"
+          placeholder="Username"
           required
         />
       </div>
@@ -21,10 +21,12 @@
       </div>
 
       <button type="submit" :disabled="loading" class="submit-btn">
-        {{ loading ? 'Loading...' : 'Login' }}
+        {{ loading ? 'Logging in...' : 'Login' }}
       </button>
 
-      <p v-if="error" class="error">{{ error }}</p>
+      <div v-if="error" class="error-container" role="alert">
+        {{ error }}
+      </div>
 
       <p class="register-link">
         Don't have an account? 
@@ -40,7 +42,7 @@ import { useRouter } from 'vue-router'
 import { authService } from '@/services/auth'
 
 const router = useRouter()
-const email = ref('')
+const username = ref('')
 const password = ref('')
 const error = ref('')
 const loading = ref(false)
@@ -50,21 +52,31 @@ const handleSubmit = async () => {
   error.value = ''
   
   try {
-    const result = await authService.login(email.value, password.value)
-    
+    const result = await authService.login(username.value, password.value)
     if (result.success) {
       router.push({ path: '/dashboard', replace: true })
     } else {
       error.value = result.error
+      // Clear password on error
+      password.value = ''
     }
-  } catch (err) {
-    error.value = 'An unexpected error occurred'
   } finally {
     loading.value = false
   }
 }
 </script>
 
-<style>
+<style scoped>
 @import './css/LoginForm.css';
+
+.error-container {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background-color: #fee2e2;
+  border: 1px solid #ef4444;
+  border-radius: 4px;
+  color: #991b1b;
+  font-size: 0.875rem;
+  text-align: center;
+}
 </style>

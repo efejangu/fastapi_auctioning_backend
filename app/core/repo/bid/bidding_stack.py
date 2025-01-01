@@ -17,7 +17,6 @@ class Stack:
             return None
         return self.head.data
         
-
   
     def push(self, data: dict):
         if not isinstance(data, dict) or 'bid' not in data or 'bidder' not in data:
@@ -40,11 +39,9 @@ class Stack:
         return data
 
     def collapse(self):
-        # Remove all nodes from the stack   
-        node = self.head
-        while node is not None:
-            next_node = node.next
-            del node
-            node = next_node
-        
+        while self.head is not None:
+            current = self.head
+            self.head = self.head.next
+            del current
+        self.size = 0
 
