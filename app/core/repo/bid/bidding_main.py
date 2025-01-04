@@ -54,12 +54,13 @@ class BiddingMain:
     async def get_groups(self):
         group = {}
         if len(self.connection_manager.groups) == 0:
-            return {"details": "No groups available", "status": 404}
+            return {"details": "No groups available"}
      
         for key, value in self.connection_manager.groups.items():
             group["group_name"] = key
             group["status"] = value["status"]["group_name_object"].status
             group ["count"] = await self.connection_manager.get_group_count(key)
+            group["target_price"] = value["group_name_object"].target_price
         
         return group
 

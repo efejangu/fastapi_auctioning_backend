@@ -6,6 +6,10 @@ class WebSocketService {
     this.socket = null
     this.wsSocket = null
     this.baseURL = 'ws://localhost:8000'
+    this.auctionCallbacks = {
+      onUpdate: null,
+      onNew: null
+    }
   }
 
   // Socket.IO connection method
@@ -90,6 +94,36 @@ class WebSocketService {
     this.wsSocket.onmessage = (event) => {
       callback(JSON.parse(event.data))
     }
+  }
+
+  // Auction specific methods
+  connectToAuctions() {
+    const wsSocket = this.connectWebSocket('/ws/auctions')
+    
+    wsSocket.onmessage = (event) => {
+      const data = JSON.parse(event.data)
+      if (data.type === 'auction_update' && this.auctionCallbacks.onUpdate) {
+        this.auctionCallbacks.onUpdate(data.auction)
+      } else if (data.type === 'new_auction' && this.auctionCallbacks.onNew) {
+        this.auctionCallbacks.onNew(data.auction)
+      }
+    }
+
+    wsSocket.onclose = () => {
+      console.log('Auction WebSocket disconnected')
+      // Attempt to reconnect after a delay
+      setTimeout(() => this.connectToAuctions(), 3000)
+    }
+
+    return wsSocket
+  }
+
+  onAuctionUpdate(callback) {
+    this.auctionCallbacks.onUpdate = callback
+  }
+
+  onNewAuction(callback) {
+    this.auctionCallbacks.onNew = callback
   }
 
   disconnect() {

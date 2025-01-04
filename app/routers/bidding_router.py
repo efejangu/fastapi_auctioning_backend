@@ -82,3 +82,19 @@ async def place_bid(
     bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
     await bidding_service.place_bid(websocket, bid, group_name, user_id)
     await bidding_service.bidding_status(group_name)
+
+@bidding_router.get("/get_groups")
+async def get_groups(
+    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
+    db: Session = Depends(get_db)
+):
+    if user_id is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+        )
+        return
+    
+    bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
+    return await bidding_service.get_groups()
+    

@@ -12,6 +12,7 @@
           <span class="user-name">{{ userProfile.name }}</span>
           <span class="user-role">{{ userProfile.role }}</span>
         </div>
+        <button @click="handleLogout" class="logout-button">Logout</button>
       </div>
     </div>
 
@@ -80,10 +81,12 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import { authService } from '@/services/auth'
 
+const router = useRouter()
 const activeAuctionsCount = ref(0)
 const myBidsCount = ref(0)
-const auctionsTrend = ref(12)  // Example trend percentage
+const auctionsTrend = ref(12)
 
 const userProfile = ref({
   name: 'John Doe',
@@ -112,179 +115,26 @@ const recentActivities = ref([
   }
 ])
 
-const fetchDashboardStats = async () => {
-  try {
-    const [auctionsResponse, bidsResponse, userResponse] = await Promise.all([
-      axios.get('http://localhost:8000/auctions/count'),
-      axios.get('http://localhost:8000/bids/my-bids/count'),
-      axios.get('http://localhost:8000/user/profile')
-    ])
-
-    activeAuctionsCount.value = auctionsResponse.data.count
-    myBidsCount.value = bidsResponse.data.count
-    userProfile.value = userResponse.data
-  } catch (error) {
-    console.error('Error fetching dashboard stats:', error)
-  }
+const handleLogout = () => {
+  authService.logout()
 }
 
-onMounted(fetchDashboardStats)
 </script>
 
 <style scoped>
-.dashboard-container {
-  background-color: #1a1a2e;
+@import './css/Dashboard.css';
+
+.logout-button {
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #4cffd6;
   color: #ffffff;
-  min-height: 100vh;
-  padding: 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-h1 {
-  font-size: 2rem;
-  color: #4cffd6;
-  margin: 0;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  background-color: #16213e;
-  padding: 0.75rem 1.5rem;
-  border-radius: 50px;
-}
-
-.user-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 1rem;
-  border: 3px solid #4cffd6;
-}
-
-.user-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-name {
-  font-weight: bold;
-  color: #4cffd6;
-}
-
-.user-role {
-  font-size: 0.8rem;
-  color: #8892b0;
-}
-
-.dashboard-stats {
-  margin-bottom: 2rem;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.stat-card {
-  background-color: #16213e;
-  border-radius: 15px;
-  padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  transition: transform 0.3s ease;
-  text-decoration: none;
-  color: inherit;
-}
-
-.stat-card:hover {
-  transform: scale(1.05);
-  background-color: #0f3460;
-}
-
-.stat-icon {
-  font-size: 2.5rem;
-  color: #4cffd6;
-  margin-right: 1.5rem;
-}
-
-.stat-content {
-  flex-grow: 1;
-}
-
-.stat-content h3 {
-  margin: 0 0 0.5rem 0;
-  color: #8892b0;
-  font-size: 1rem;
-}
-
-.stat-value {
-  font-size: 1.75rem;
-  font-weight: bold;
-  color: #4cffd6;
-  margin-bottom: 0.5rem;
-}
-
-.stat-trend {
-  font-size: 0.8rem;
-  color: #8892b0;
-}
-
-.stat-trend.positive {
-  color: #4cffd6;
-}
-
-.dashboard-recent-activity {
-  background-color: #16213e;
-  border-radius: 15px;
-  padding: 1.5rem;
-}
-
-.dashboard-recent-activity h2 {
-  margin: 0 0 1rem 0;
-  color: #4cffd6;
-  font-size: 1.25rem;
-}
-
-.activity-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.activity-item {
-  display: flex;
-  align-items: center;
-  background-color: #0f3460;
-  padding: 1rem;
-  border-radius: 10px;
-}
-
-.activity-icon {
-  font-size: 1.5rem;
-  color: #4cffd6;
-  margin-right: 1rem;
-}
-
-.activity-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.activity-title {
-  font-weight: bold;
-  color: #ffffff;
-}
-
-.activity-time {
-  font-size: 0.8rem;
-  color: #8892b0;
+.logout-button:hover {
+  background-color: #3bbfbf;
 }
 </style>

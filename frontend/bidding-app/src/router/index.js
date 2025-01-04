@@ -3,6 +3,7 @@ import { authService } from '@/services/auth'
 import Dashboard from '@/components/bidding/Dashboard.vue'
 import Auctions from '@/components/bidding/Auctions.vue'
 import CreateBid from '@/components/bidding/CreateBid.vue'
+import BidInterface from '@/components/bidding/BidInterface.vue'
 import LoginForm from '../components/auth/LoginForm.vue'
 import RegisterForm from '../components/auth/RegisterForm.vue'
 
@@ -40,6 +41,13 @@ const routes = [
     name: 'CreateBid',
     component: CreateBid,
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/bid/:groupName',
+    name: 'BidInterface',
+    component: BidInterface,
+    meta: { requiresAuth: true },
+    props: true
   }
 ]
 

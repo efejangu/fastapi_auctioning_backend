@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '@/router'
 
 const API_URL = 'http://localhost:8000'
 
@@ -112,7 +113,6 @@ class AuthService {
         }
       }
 
-      // Format data according to CreateUser schema requirements
       const data = {
         username: username.trim(),
         first_name: firstName.trim(),
@@ -128,8 +128,8 @@ class AuthService {
         }
       })
 
-      if (response.data && (response.data.id || response.data.username)) {
-        return { success: true }
+      if (response.status === 201) {
+        return { success: true, message: 'Account successfully created!' }
       }
 
       return { 
@@ -145,7 +145,6 @@ class AuthService {
         }
       }
 
-      // Handle specific registration errors
       switch (error.response.status) {
         case 400:
           return {
@@ -168,7 +167,7 @@ class AuthService {
 
   logout() {
     localStorage.removeItem('user')
-    window.location.href = '/login'
+    router.push('/login')
   }
 
   getCurrentUser() {

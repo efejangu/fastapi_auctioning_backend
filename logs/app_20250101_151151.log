@@ -1,0 +1,8 @@
+2025-01-01 15:11:51,098 - __main__ - INFO - Starting FastAPI application
+2025-01-01 15:11:51,100 - __main__ - INFO - Database tables created
+2025-01-01 15:30:02,280 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "/home/rooby/projects/bidding application/venv/lib/python3.12/site-packages/passlib/handlers/bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
