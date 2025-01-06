@@ -105,7 +105,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { 
@@ -189,77 +189,9 @@ const createBidGroup = async () => {
 onMounted(() => {
   connectWebSocket()
 })
-
-onUnmounted(() => {
-  if (socket.value) {
-    socket.value.close()
-  }
-})
 </script>
 
 <style scoped>
-/* Temporary inline styles for immediate visibility */
-.create-bid-container {
-  display: flex;
-  min-height: 100vh;
-  background-color: #1a1a2e;
-  color: #ffffff;
-}
-
-.create-bid-sidebar {
-  width: 300px;
-  background-color: #16213e;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-logo {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.logo-icon {
-  font-size: 2rem;
-  color: #4cffd6;
-  margin-right: 1rem;
-}
-
-.sidebar-logo h2 {
-  margin: 0;
-  color: #4cffd6;
-  font-size: 1.5rem;
-}
-
-.create-bid-main {
-  flex-grow: 1;
-  padding: 2rem;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-control {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: #0f3460;
-  border: 1px solid #4cffd6;
-  border-radius: 8px;
-  color: #ffffff;
-}
-
-.create-bid-btn {
-  background-color: #4cffd6;
-  color: #0f1020;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Import external styles */
-@import '@/components/bidding/css/CreateBid.css';
+/* Import external styles first */
+@import url('./css/CreateBid.css');
 </style>

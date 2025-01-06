@@ -17,14 +17,17 @@ async def create_group(
     websocket: WebSocket,
     group_name: str,
     target_price: float,
-    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
     db: Session = Depends(get_db)
 ):
+    # Accept the connection first
+    await websocket.accept()
+    
+    # Then verify the token
+    session_tokens = SessionTokens()
+    user_id, error_message, close_code = await session_tokens.verify_ws_token(websocket)
+    
     if user_id is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-        )
+        await websocket.close(code=close_code, reason=error_message)
         return
     
     bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
@@ -34,14 +37,17 @@ async def create_group(
 async def connect(
     websocket: WebSocket,
     group_name: str,
-    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
     db: Session = Depends(get_db)
 ):
+    # Accept the connection first
+    await websocket.accept()
+    
+    # Then verify the token
+    session_tokens = SessionTokens()
+    user_id, error_message, close_code = await session_tokens.verify_ws_token(websocket)
+    
     if user_id is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-        )
+        await websocket.close(code=close_code, reason=error_message)
         return
     
     bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
@@ -51,14 +57,17 @@ async def connect(
 async def disconnect(
     websocket: WebSocket,
     group_name: str,
-    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
     db: Session = Depends(get_db)
 ):
+    # Accept the connection first
+    await websocket.accept()
+    
+    # Then verify the token
+    session_tokens = SessionTokens()
+    user_id, error_message, close_code = await session_tokens.verify_ws_token(websocket)
+    
     if user_id is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-        )
+        await websocket.close(code=close_code, reason=error_message)
         return
     
     bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
@@ -69,14 +78,17 @@ async def place_bid(
     websocket: WebSocket,
     bid: float,
     group_name: str,
-    user_id: Annotated[str, Depends(SessionTokens().get_current_user_id)],
     db: Session = Depends(get_db)
 ):
+    # Accept the connection first
+    await websocket.accept()
+    
+    # Then verify the token
+    session_tokens = SessionTokens()
+    user_id, error_message, close_code = await session_tokens.verify_ws_token(websocket)
+    
     if user_id is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-        )
+        await websocket.close(code=close_code, reason=error_message)
         return
     
     bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
@@ -93,8 +105,6 @@ async def get_groups(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
         )
-        return
     
     bidding_service = BiddingService(db=db, bidding_main=BiddingMain())
     return await bidding_service.get_groups()
-    
