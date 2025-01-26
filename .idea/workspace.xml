@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="added authentication functionality&#10;added functionality for user to interact with Items">
-      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_logic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_watch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/repo/bid/conn_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/bid/bidding_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_logic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/bid/bidding_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/bid/conn_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/bid/conn_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/services/bidding_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/services/bidding_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routers/bidding_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/bidding_router.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/CreateBid.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/CreateBid.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,31 +49,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python tests.Python tests for app.tests.test_database.test_users.executor": "Run",
-    "Python tests.Python tests for database_test.test_users.executor": "Run",
-    "Python tests.Python tests for database_test.test_users_endpoint.executor": "Run",
-    "Python tests.Python tests for test_database.test_users.executor": "Run",
-    "Python tests.Python tests for test_database.test_users_endpoint.executor": "Run",
-    "Python.app.executor": "Run",
-    "Python.auth_repository.executor": "Run",
-    "Python.auth_router.executor": "Run",
-    "Python.bidding_stack.executor": "Run",
-    "Python.bidding_watch.executor": "Run",
-    "Python.database.executor": "Run",
-    "Python.models.executor": "Run",
-    "Python.pwd_hash.executor": "Run",
-    "Python.run.executor": "Run",
-    "Python.sessiontokens.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.codeium.enabled": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "features",
-    "last_opened_file_path": "/home/popcornjack/PycharmProjects/bidding application",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for app.tests.test_database.test_users.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for database_test.test_users.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for database_test.test_users_endpoint.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_database.test_users.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_database.test_users_endpoint.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.auth_repository.executor&quot;: &quot;Run&quot;,
+    &quot;Python.auth_router.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bidding_stack.executor&quot;: &quot;Run&quot;,
+    &quot;Python.bidding_watch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.database.executor&quot;: &quot;Run&quot;,
+    &quot;Python.models.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pwd_hash.executor&quot;: &quot;Run&quot;,
+    &quot;Python.run.executor&quot;: &quot;Run&quot;,
+    &quot;Python.sessiontokens.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;features&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/popcornjack/PycharmProjects/bidding application&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.codeium.AppSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/core/repo" />
@@ -129,15 +135,13 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.run" />
-        <item itemvalue="Python.run" />
-        <item itemvalue="Python.run" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-ce3d9afa04ac-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.20224.347" />
+        <option value="bundled-python-sdk-1b1018131e27-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.180" />
       </set>
     </attachedChunks>
   </component>
@@ -149,6 +153,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1724356436729</updated>
+      <workItem from="1736544288415" duration="85000" />
     </task>
     <task id="LOCAL-00001" summary="added authentication functionality">
       <option name="closed" value="true" />
@@ -168,6 +173,9 @@
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -203,14 +211,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="added authentication functionality&#10;added functionality for user to interact with Items" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/core/repo/auth/auth_repository.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="group_name not in self.connection_manager.groups" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

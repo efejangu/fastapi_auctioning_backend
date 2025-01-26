@@ -161,7 +161,12 @@ const connectWebSocket = () => {
 
 const createBidGroup = async () => {
   try {
-    const createGroupSocket = new WebSocket(`ws://localhost:8000/bidding/ws/create_group?group_name=${bidGroup.value.name}&target_price=${bidGroup.value.targetPrice}`)
+    const token = localStorage.getItem('jwt_token')
+    if (!token) {
+      throw new Error('Authentication token not found. Please login again.')
+    }
+    const urlEncodedToken = encodeURIComponent(token)
+    const createGroupSocket = new WebSocket(`ws://localhost:8000/bidding/ws/create_group?group_name=${bidGroup.value.name}&target_price=${bidGroup.value.targetPrice}&token=${urlEncodedToken}`)
     
     createGroupSocket.onopen = () => {
       console.log('Create group connection opened')

@@ -40,16 +40,10 @@ app = FastAPI()
 # ⚠️ SECURITY WARNING: DO NOT USE THESE SETTINGS IN PRODUCTION! ⚠️
 # These settings allow any localhost connection for development.
 # For production, specify exact origins and remove wildcards.
-origins = [
-    "http://localhost:*",      # Allow any localhost HTTP port
-    "ws://localhost:*",        # Allow any localhost WebSocket port
-    "http://127.0.0.1:*",     # Allow any 127.0.0.1 HTTP port
-    "ws://127.0.0.1:*",       # Allow any 127.0.0.1 WebSocket port
-]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[""],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

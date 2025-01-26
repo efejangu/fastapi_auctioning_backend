@@ -2,7 +2,7 @@ import asyncio
 from hmac import new
 from typing import Optional
 from fastapi import WebSocket
-from fastapi.middleware.cors import CORSMiddleware
+
 
 from app.core.repo.bid.bidding_watch import BidTimer
 from app.core.repo.bid.conn_manager import ConnectionManager
@@ -32,7 +32,7 @@ class AuctionGroup:
         # Validate minimum increment (e.g., 1% of current highest bid)
         min_increment = self.highest_bid * 0.01 if self.highest_bid else 0
         if self.highest_bid and bid < (self.highest_bid + min_increment):
-            await websocket.send_text(f"Bid must be at least {self.highest_bid + min_increment:.2f}")
+            await self.connection_manager.broadcast(self.group_name, f"Bid must be at least {self.highest_bid + min_increment:.2f}", self.group_name)
             return
 
         if self.highest_bid is None or bid > self.highest_bid:
@@ -53,9 +53,11 @@ class AuctionGroup:
             await self.close_auction()
 
     async def close_auction(self):
+        #TO-DO: store data of the winner of the bid
         self.auction_open = False
         self.bid_timer.stop()
         self.stack.collapse()
+        self.cleanup()
 
         
         if self.highest_bid is not None:
@@ -71,10 +73,8 @@ class AuctionGroup:
     
     async def cleanup(self):
         """Method to properly cleanup resources"""
-        await self.bid_timer.stop()
-        self.stack.collapse()
-        if self.connection_manager:
-            await self.connection_manager.disconnect_all(self.group_name)
+        self.connection_manager.disconnect_all(self.group_name)
+        self.connection_manager.group_objects.pop(self.group_name)
             
     async def __aenter__(self):
         return self
