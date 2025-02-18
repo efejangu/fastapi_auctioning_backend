@@ -46,68 +46,68 @@ class SessionTokens:
         return user_id
 
 
-async def verify_ws_token(self, websocket: WebSocket) -> Dict[str, Optional[str | int]]:
-    """
-    Verify token from WebSocket query parameters.
+    async def verify_ws_token(self, websocket: WebSocket) -> Dict[str, Optional[str | int]]:
+        """
+        Verify token from WebSocket query parameters.
 
-    Args:
-        websocket (WebSocket): The WebSocket connection containing the token.
+        Args:
+            websocket (WebSocket): The WebSocket connection containing the token.
 
-    Returns:
-        Dict[str, Optional[str | int]]: A dictionary containing:
-            - user_id: The verified user ID or None if verification fails.
-            - error_message: Description of the error if any.
-            - close_code: WebSocket close code if applicable.
-    """
-    token = websocket.query_params.get("token")
-    if not token:
-        self.logger.info("No token provided in WebSocket connection")
-        return {
-            "user_id": None,
-            "error_message": "No authentication token provided",
-            "close_code": 4001
-        }
-
-    try:
-        # Decode and verify the token
-        payload = jwt.decode(token, self.SECRET_KEY, algorithms=[self.ALGORITHM])
-        user_id: str = payload.get("sub")
-
-        if user_id is None:
-            self.logger.warning("Token payload missing user_id")
+        Returns:
+            Dict[str, Optional[str | int]]: A dictionary containing:
+                - user_id: The verified user ID or None if verification fails.
+                - error_message: Description of the error if any.
+                - close_code: WebSocket close code if applicable.
+        """
+        token = websocket.query_params.get("token")
+        if not token:
+            self.logger.info("No token provided in WebSocket connection")
             return {
                 "user_id": None,
-                "error_message": "Invalid token format: missing user ID",
+                "error_message": "No authentication token provided",
                 "close_code": 4001
             }
 
-        self.logger.info(f"Successfully verified WebSocket token for user {user_id}")
-        return {
-            "user_id": user_id,
-            "error_message": None,
-            "close_code": None
-        }
+        try:
+            # Decode and verify the token
+            payload = jwt.decode(token, self.SECRET_KEY, algorithms=[self.ALGORITHM])
+            user_id: str = payload.get("sub")
 
-    except jwt.ExpiredSignatureError:
-        self.logger.warning("Token signature has expired")
-        return {
-            "user_id": None,
-            "error_message": "Token has expired",
-            "close_code": 4002
-        }
+            if user_id is None:
+                self.logger.warning("Token payload missing user_id")
+                return {
+                    "user_id": None,
+                    "error_message": "Invalid token format: missing user ID",
+                    "close_code": 4001
+                }
 
-    except jwt.JWTError as e:
-        self.logger.error(f"JWT verification failed: {str(e)}")
-        return {
-            "user_id": None,
-            "error_message": f"Invalid token: {str(e)}",
-            "close_code": 4001
-        }
+            self.logger.info(f"Successfully verified WebSocket token for user {user_id}")
+            return {
+                "user_id": user_id,
+                "error_message": None,
+                "close_code": None
+            }
 
-    except Exception as e:
-        self.logger.error(f"Unexpected error verifying WebSocket token: {str(e)}")
-        return {
-            "user_id": None,
-            "error_message": "Internal server error during authentication",
-            "close_code": 4001
-        }
+        except jwt.ExpiredSignatureError:
+            self.logger.warning("Token signature has expired")
+            return {
+                "user_id": None,
+                "error_message": "Token has expired",
+                "close_code": 4002
+            }
+
+        except jwt.JWTError as e:
+            self.logger.error(f"JWT verification failed: {str(e)}")
+            return {
+                "user_id": None,
+                "error_message": f"Invalid token: {str(e)}",
+                "close_code": 4001
+            }
+
+        except Exception as e:
+            self.logger.error(f"Unexpected error verifying WebSocket token: {str(e)}")
+            return {
+                "user_id": None,
+                "error_message": "Internal server error during authentication",
+                "close_code": 4001
+            }

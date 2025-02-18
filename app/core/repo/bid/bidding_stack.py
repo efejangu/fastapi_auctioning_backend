@@ -7,7 +7,7 @@ class Node:
 class Stack:
     def __init__(self):
         self.head = None
-        self.size = 0
+        self._size = 0
 
     def peek (self) -> None | dict:
         """Returns the top element in the stack without removing it.
@@ -22,20 +22,20 @@ class Stack:
         if not isinstance(data, dict) or 'bid' not in data or 'bidder' not in data:
             raise ValueError("Data must be a dictionary with 'bid' and 'bidder' keys")
         new_node = Node(data)
-        if self.size == 0:
+        if self.get_size() == 0:
             self.head = new_node
         else:
             new_node.next = self.head
             self.head = new_node
-        self.size += 1
-        return self.size
+        self._size += 1
+        return self._size
 
     def pop (self):
-        if self.size == 0:
+        if self._size() == 0:
             return None
         data = self.head.data
         self.head = self.head.next
-        self.size -= 1
+        self._size -= 1
         return data
 
     def collapse(self):
@@ -43,5 +43,9 @@ class Stack:
             current = self.head
             self.head = self.head.next
             del current
-        self.size = 0
+        self._size = 0
+
+
+    def get_size(self):
+        return self._size
 

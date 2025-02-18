@@ -8,6 +8,7 @@ from app.routers.items_router import item_router
 from app.routers.bidding_router import bidding_router
 
 from fastapi_pagination import add_pagination
+from fastapi_pagination.utils import disable_installed_extensions_check
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 import os
@@ -15,7 +16,7 @@ from datetime import datetime
 
 
 # Create logs directory if it doesn't exist
-os.makedirs("logs", exist_ok=True)
+os.makedirs("../logs", exist_ok=True)
 
 # Configure logging
 logging.basicConfig(
@@ -24,7 +25,7 @@ logging.basicConfig(
     handlers=[
         # File handler - logs everything to a file
         logging.FileHandler(
-            f'logs/app_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
+            f'../logs/app_{datetime.now().strftime("%Y%m%d_%H%M%S")}.log'
         ),
         # Console handler - logs everything to console
         logging.StreamHandler()
@@ -50,6 +51,8 @@ app.add_middleware(
 )
 
 add_pagination(app)
+disable_installed_extensions_check()
+
 app.include_router(auth_router)
 app.include_router(item_router)
 app.include_router(bidding_router)

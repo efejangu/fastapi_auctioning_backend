@@ -4,16 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="added authentication functionality&#10;added functionality for user to interact with Items">
+    <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="Fixed Websocket connection issues.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/auth/session_tokens.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/repo/bid/bidding_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_logic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/repo/bid/bidding_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/bid/bidding_stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/bid/bidding_stack.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/repo/bid/bidding_watch.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/repo/bid/conn_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/repo/bid/conn_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/services/bidding_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/services/bidding_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routers/bidding_router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/bidding_router.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/CreateBid.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/CreateBid.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/sql_app.db" beforeDir="false" afterPath="$PROJECT_DIR$/app/sql_app.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20241227_225406.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20241229_162357.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20241229_223834.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20241229_223942.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20241229_235719.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20241230_000846.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20250101_001917.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20250101_145034.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20250101_151151.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20250102_215547.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/app_20250103_001220.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql_app.db" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +52,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -49,34 +65,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python tests.Python tests for app.tests.test_database.test_users.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for database_test.test_users.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for database_test.test_users_endpoint.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_database.test_users.executor&quot;: &quot;Run&quot;,
-    &quot;Python tests.Python tests for test_database.test_users_endpoint.executor&quot;: &quot;Run&quot;,
-    &quot;Python.app.executor&quot;: &quot;Run&quot;,
-    &quot;Python.auth_repository.executor&quot;: &quot;Run&quot;,
-    &quot;Python.auth_router.executor&quot;: &quot;Run&quot;,
-    &quot;Python.bidding_stack.executor&quot;: &quot;Run&quot;,
-    &quot;Python.bidding_watch.executor&quot;: &quot;Run&quot;,
-    &quot;Python.database.executor&quot;: &quot;Run&quot;,
-    &quot;Python.models.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pwd_hash.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run.executor&quot;: &quot;Run&quot;,
-    &quot;Python.sessiontokens.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;features&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/popcornjack/PycharmProjects/bidding application&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.codeium.AppSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python tests.Python tests for app.tests.test_database.test_users.executor": "Run",
+    "Python tests.Python tests for database_test.test_users.executor": "Run",
+    "Python tests.Python tests for database_test.test_users_endpoint.executor": "Run",
+    "Python tests.Python tests for test_database.test_users.executor": "Run",
+    "Python tests.Python tests for test_database.test_users_endpoint.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.auth_repository.executor": "Run",
+    "Python.auth_router.executor": "Run",
+    "Python.bidding_main.executor": "Run",
+    "Python.bidding_router.executor": "Run",
+    "Python.bidding_stack.executor": "Run",
+    "Python.bidding_watch.executor": "Run",
+    "Python.database.executor": "Run",
+    "Python.models.executor": "Run",
+    "Python.pwd_hash.executor": "Run",
+    "Python.run.executor": "Run",
+    "Python.sessiontokens.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.codeium.enabled": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "features",
+    "last_opened_file_path": "/home/popcornjack/PycharmProjects/bidding application",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/core/repo" />
@@ -171,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725124598783</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fixed Websocket connection issues.">
+      <option name="closed" value="true" />
+      <created>1737917944672</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1737917944673</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,12 +235,22 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added authentication functionality" />
     <MESSAGE value="added authentication functionality&#10;added functionality for user to interact with Items" />
-    <option name="LAST_COMMIT_MESSAGE" value="added authentication functionality&#10;added functionality for user to interact with Items" />
+    <MESSAGE value="Fixed Websocket connection issues." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Websocket connection issues." />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/routers/bidding_router.py</url>
+          <line>172</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="group_name not in self.connection_manager.groups" language="Python" />
+        <watch expression="yes = id in self.connection_manager.group_admins[group_name].keys()" language="Python" />
       </configuration>
     </watches-manager>
   </component>
