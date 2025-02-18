@@ -1,7 +1,7 @@
 from fastapi.params import Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from app.database import session, get_db
+from app.database import get_db
 from app.models import User
 from fastapi import status
 from app.core.repo.auth.pwd_hash import PasswordHash
