@@ -22,17 +22,7 @@ def get_db():
         yield db
     finally:
         db.close
-
-
-
-
-
-
-
-
-
-
-
+#______________________________Test db code ________________________________
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 # # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 #

@@ -4,7 +4,6 @@ from app.models import User, Base
 from app.database import get_db, engine
 
 from app.routers.auth_router import auth_router
-from app.routers.items_router import item_router
 from app.routers.bidding_router import bidding_router
 
 from fastapi_pagination import add_pagination
@@ -54,7 +53,6 @@ add_pagination(app)
 disable_installed_extensions_check()
 
 app.include_router(auth_router)
-app.include_router(item_router)
 app.include_router(bidding_router)
 
 if __name__ == "__main__":
