@@ -9,7 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 import pymysql
 
 
-SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:babyboii365@172.17.0.2:3306/bidding_app"
+SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:Godhelpme123@172.18.0.2:3306/bidding_app"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 

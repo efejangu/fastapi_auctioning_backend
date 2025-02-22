@@ -1,0 +1,27 @@
+version: "3.9"
+
+volumes:
+  app:
+
+services:
+
+  db:
+    image: mariadb:latest
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: Godhelpme123
+      MARIADB_DATABASE: bidding_app
+      MARIADB_USER: admin
+      MARIADB_PASSWORD: Admin123$%^
+
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - app:/application

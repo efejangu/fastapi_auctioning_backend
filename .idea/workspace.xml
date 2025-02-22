@@ -4,8 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="Adjusted databases table to handle maria db">
+    <list default="true" id="1c24c573-9271-4f59-aa2c-9bfac6e8ad07" name="Changes" comment="deleted unused files">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/services/item_service.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routers/items_router.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/sql_app.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/public/vite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/assets/vue.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/auth/LoginForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/auth/RegisterForm.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/auth/css/LoginForm.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/auth/css/RegisterForm.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/Auctions.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/BidInterface.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/CreateBid.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/Dashboard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/css/Auctions.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/css/CreateBid.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/components/bidding/css/Dashboard.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/router/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/services/auth.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/services/websocket.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/src/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/bidding-app/vite.config.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739918063196</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="deleted unused files">
+      <option name="closed" value="true" />
+      <created>1740006137804</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1740006137804</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,7 +261,8 @@
     <MESSAGE value="added authentication functionality&#10;added functionality for user to interact with Items" />
     <MESSAGE value="Fixed Websocket connection issues." />
     <MESSAGE value="Adjusted databases table to handle maria db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adjusted databases table to handle maria db" />
+    <MESSAGE value="deleted unused files" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted unused files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
