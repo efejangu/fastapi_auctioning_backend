@@ -61,7 +61,7 @@ class AuthRepository:
 
    del identifier_length
    return existing_user
-    #add session as a dependancy
+
   async def authenticate_user(self, username: str, password: str, db: Session):
        pwd = PasswordHash()
        user = await self.get_user(username, db)

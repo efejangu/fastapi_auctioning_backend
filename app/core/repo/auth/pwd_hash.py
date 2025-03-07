@@ -1,10 +1,13 @@
 from passlib.context import CryptContext
+import os
+from dotenv import load_dotenv
 
-# I am aware sensitive info like this is meant to be stored in an env file bare with me pls
 
+load_dotenv()
 class PasswordHash:
+    SCHEME  = os.getenv("PWD_ALGORITHM")
     def __init__(self):
-        self.password_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+        self.password_context = CryptContext(schemes=[self.SCHEME], deprecated="auto")
 
     def hash_password(self, password) -> str:
         return self.password_context.hash(password)
