@@ -7,11 +7,15 @@ from fastapi import Depends
 import logging
 from typing import Dict
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 class SessionTokens:
     def __init__(self):
-        self.SECRET_KEY = "mysecretkey" #I am aware this is bad practice
-        self.ALGORITHM = "HS256"
+        self.SECRET_KEY = os.getenv("MY_SECRET_KEY")
+        self.ALGORITHM = os.getenv("SESH_TOKEN_ALGORITHM")
         self.ACCESS_TOKEN_EXPIRE_MINUTES = 30
         self.logger = logging.getLogger(__name__)
 
