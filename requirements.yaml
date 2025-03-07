@@ -1,3 +1,5 @@
+
+
 version: "3.9"
 
 volumes:
@@ -5,23 +7,34 @@ volumes:
 
 services:
 
-  db:
-    image: mariadb:latest
-    expose:
-      - "3306"
+  traefik:
+    image: "traefik:v2.6"
+
+    command:
+      - "--api.insecure=false"
+      - "--api.dashboard=false"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+
     ports:
-      - "3306:3306"
-    environment:
-      MARIADB_ROOT_PASSWORD: Godhelpme123
-      MARIADB_DATABASE: bidding_app
-      MARIADB_USER: admin
-      MARIADB_PASSWORD: Admin123$%^
+      - "80:80"
+
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
 
   app:
     build: .
     ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    volumes:
-      - app:/application
+      - "8000"
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`app.demo`)"
+      - "traefik.http.routers.app.entrypoints=web"
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+
