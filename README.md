@@ -1,4 +1,4 @@
-# astapi_bidding_backend
+# Fastapi_auctioning_backend
 This API primarily utilizes fasapi's websocket feature to create the effect of an auctioning app
 # Before you Install!!
 The api makes use of databases like sqlite and mariadb for basic CRUD operations. 
