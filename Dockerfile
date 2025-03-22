@@ -1,18 +1,42 @@
+# -------------------------
+# Stage 1: Build Stage
+# -------------------------
+FROM python:3.12-slim AS builder
 
-FROM python:3.12-slim
-
+# Set the working directory to /code
 WORKDIR /code
 
-COPY ./requirements.txt /code/requirements.txt
+# Copy the requirements file into the container.
+COPY requirements.txt .
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+# Install the Python dependencies into a custom directory (/install)
+RUN pip install --prefix=/install --no-cache-dir -r requirements.txt
 
-COPY ./.env /code/.env
+# -------------------------
+# Stage 2: Final (Runtime) Stage
+# -------------------------
+FROM python:3.12-slim
 
-COPY ./app /code/app
+# Create a non-root user "appuser" with a home directory.
+RUN useradd --create-home appuser
 
-#EXPOSE 8000
+# Set the working directory to /code
+WORKDIR /code
+
+# Copy the installed dependencies from the builder stage into /usr/local.
+COPY --from=builder /install /usr/local
+
+# Copy the environment file and application code.
+COPY .env .
+COPY app/ app/
+
+RUN chown -R appuser:appuser /code
+
+RUN mkdir -p /logs && chown -R appuser:appuser /logs
+
+RUN chmod -R u+rwx /home/appuser
+
+# Switch to the non-root user "appuser".
+USER appuser
 
 CMD ["python", "-m", "app.run"]
-
-
